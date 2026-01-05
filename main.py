@@ -1,25 +1,18 @@
-import feedparser
+import telegram
 import requests
-import os
 
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-CHANNEL = os.getenv("CHANNEL")
+# Secrets
+BOT_TOKEN = "YOUR_BOT_TOKEN"
+CHANNEL_ID = "-100XXXXXXXXXX"
 
-feed = feedparser.parse("https://airdrops.io/feed/")
-entry = feed.entries[0]
+bot = telegram.Bot(token=BOT_TOKEN)
 
-msg = (
-    "🚨 NEW AIRDROP ALERT 🚨\n\n"
-    f"🔥 {entry.title}\n\n"
-    f"🔗 Join Airdrop:\n{entry.link}\n\n"
-    "#Airdrop #Crypto"
-)
+# Example airdrops (dummy, replace with real scraping later)
+airdrops = [
+    {"name": "CryptoX Token", "link": "https://t.me/CryptoX_airdrop"},
+    {"name": "BlockY Airdrop", "link": "https://t.me/BlockY_airdrop"}
+]
 
-url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-
-response = requests.post(url, data={
-    "chat_id": CHANNEL,
-    "text": msg
-})
-
-print(response.text)
+for airdrop in airdrops:
+    message = f"🚨 NEW AIRDROP ALERT 🚨\n\n🔥 {airdrop['name']}\n🔗 Join Airdrop: {airdrop['link']}"
+    bot.send_message(chat_id=CHANNEL_ID, text=message)
