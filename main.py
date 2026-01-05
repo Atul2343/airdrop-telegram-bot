@@ -2,8 +2,8 @@ import telegram
 import requests
 
 # Secrets
-BOT_TOKEN = "YOUR_BOT_TOKEN"
-CHANNEL_ID = "-100XXXXXXXXXX"
+BOT_TOKEN = "8374470393:AAElNmSOWU_tc0-y1moKeEaXOTyg8VrsaDA"
+CHANNEL_ID = "-1003460169612"
 
 bot = telegram.Bot(token=BOT_TOKEN)
 
